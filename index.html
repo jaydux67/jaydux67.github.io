@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>packetracer · Developer &amp; bug hunter</title>
+<title>packetracer · Systems & Penetration Testing</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Bricolage+Grotesque:wght@500;700&display=swap">
 <style>
@@ -62,7 +62,7 @@ footer{padding:28px 0 40px;color:var(--muted);border-top:1px solid var(--line)}
 <body>
 <div class="wrap">
   <header class="top">
-    <</b>
+    <b class="mono">packetracer</b>
     <nav>
       <a href="#projects">Projects</a>
       <a href="#about">About</a>
@@ -73,42 +73,38 @@ footer{padding:28px 0 40px;color:var(--muted);border-top:1px solid var(--line)}
 
   <main>
     <div class="hero">
-      <h1>I find the bugs in other people’s code, and write small tools of my own.</h1>
-      <p class="lede">Developer and bug hunter from Sri Lanka. I work in Python, C and Linux, with a focus on web security, malware analysis and AI vulnerabilities.</p>
-      <div class="dump mono" id="dump" role="img" aria-label="Hex dump of the text packetracer developer and bug hunter"></div>
+      <h1>I build Linux infrastructure, trace packets, and break systems to see how they tick.</h1>
+      <p class="lede">Systems engineering student and aspiring penetration tester from Sri Lanka. Focused on Linux administration, network architecture, and offensive web security.</p>
+      <div class="dump mono" id="dump" role="img" aria-label="Hex dump of the text packetracer systems and security"></div>
       <div class="cmd">
-        <code class="mono" id="clone">git clone https://github.com/jaydux67</code>
+        <code class="mono" id="clone">git clone https://github.com/jaydux67/jaydux67.github.io</code>
         <button class="btn" id="copy" type="button">Copy command</button>
-        <a class="btn alt" href="https://github.com/jaydux67">View GitHub</a>
+        <a class="btn alt" href="https://github.com/jaydux67" target="_blank" rel="noopener">View GitHub</a>
       </div>
     </div>
 
     <section id="projects">
-      <h2>Projects</h2>
+      <h2>Projects & Labs</h2>
       <div class="projects">
         <article class="proj big">
-          <span class="lang mono">C</span>
-          <h3>MicroHttpd</h3>
-          <p>A tiny single-threaded HTTP/1.1 server for routers and other low-memory devices. The plain build is 24 KB, with optional HTTPS through mbedTLS. It allocates no heap after startup and rejects path traversal and NUL-byte injection.</p>
-          
+          <span class="lang mono">Linux · HAProxy · MySQL</span>
+          <h3>3-Tier High-Availability Web & Database Stack</h3>
+          <p>Designed and deployed a multi-node Linux infrastructure lab featuring an HAProxy load balancer routing traffic across redundant Apache web servers, backed by primary-replica MySQL database replication.</p>
         </article>
         <article class="proj">
-          <span class="lang mono">Python</span>
-          <h3>IPTOOL</h3>
-          <p>Looks up the location of an IP address and converts hostnames to IPs.</p>
-          
+          <span class="lang mono">Offensive Security</span>
+          <h3>Isolated Pentest Lab</h3>
+          <p>Multi-VM VirtualBox environment on host-only subnets for practicing reconnaissance, OWASP Top 10 web exploitation, and Linux privilege escalation.</p>
         </article>
         <article class="proj">
-          <span class="lang mono">Python</span>
-          <h3>Zip_Crack-2.0</h3>
-          <p>Tests the strength of a .zip password against your own password list.</p>
-          
+          <span class="lang mono">Linux · Security</span>
+          <h3>SSH Server Hardening</h3>
+          <p>Locked down enterprise Linux servers using key-based authentication, custom port policies, firewall rules, and systemd-journald audit logging.</p>
         </article>
         <article class="proj">
-          <span class="lang mono">Python</span>
-          <h3>TEXT_TO_ASCII_ART</h3>
-          <p>Turns any text into ASCII art from the command line.</p>
-          
+          <span class="lang mono">C · Embedded</span>
+          <h3>ESP32 & Microcontroller Systems</h3>
+          <p>Low-level hardware interfacing, memory mapping, and embedded control routines built on ESP32 and 8051 architectures.</p>
         </article>
       </div>
     </section>
@@ -117,24 +113,23 @@ footer{padding:28px 0 40px;color:var(--muted);border-top:1px solid var(--line)}
       <h2>About</h2>
       <div class="about">
         <div>
-          <p>I report vulnerabilities, build command-line tools, and write about what I find. Right now I’m working on packetracer and studying for CEH, CISSP and CCNA.</p>
-          <p>Ask me about Python, Linux or cybersecurity.</p>
+          <p>I spend my time configuring Linux servers, analyzing network traffic, and learning penetration testing through hands-on labs and CTF challenges. Right now I’m documenting my security write-ups and building tools under <strong>packetracer</strong>.</p>
+          <p>Ask me about Linux administration, networking, or web security.</p>
         </div>
         <dl class="mono">
-          <dt>Languages</dt><dd>Python, C, JavaScript</dd>
-          <dt>Platforms</dt><dd>Linux, Docker</dd>
-          <dt>Focus</dt><dd>Web security, malware analysis</dd>
-          <dt>Learning</dt><dd>CEH, CISSP, CCNA</dd>
+          <dt>Languages</dt><dd>Python, C, Bash, SQL</dd>
+          <dt>Platforms</dt><dd>Linux (RHEL/CentOS), VirtualBox</dd>
+          <dt>Focus</dt><dd>Web pentesting, network security</dd>
+          <dt>Current</dt><dd>OWASP Top 10, HTB / TryHackMe</dd>
         </dl>
       </div>
     </section>
 
     <section id="contact">
       <h2>Contact</h2>
-      <p>Projects and write-ups are posted on Telegram. Security work is on the lab site.</p>
+      <p>Source code, lab documentation, and security write-ups are hosted on GitHub.</p>
       <div class="cmd">
-        <a class="btn" href="https://t.me/H3X4R">Message on Telegram</a>
-        
+        <a class="btn" href="https://github.com/jaydux67" target="_blank" rel="noopener">GitHub (@jaydux67)</a>
       </div>
     </section>
   </main>
@@ -143,7 +138,7 @@ footer{padding:28px 0 40px;color:var(--muted);border-top:1px solid var(--line)}
 
 <script>
 (function(){
-  var text="packetracer :: developer & bug hunter, Sri Lanka. ";
+  var text="packetracer :: systems & penetration testing, Sri Lanka. ";
   var root=document.getElementById("dump");
   var bytes=[];for(var i=0;i<text.length;i++)bytes.push(text.charCodeAt(i));
   while(bytes.length%16)bytes.push(0);
@@ -155,7 +150,7 @@ footer{padding:28px 0 40px;color:var(--muted);border-top:1px solid var(--line)}
     for(var c=0;c<16;c++){
       var idx=r+c,b=bytes[idx];
       var h=document.createElement("span");h.textContent=("0"+b.toString(16)).slice(-2);h.dataset.i=idx;
-      if(idx<8)h.className="k";
+      if(idx<11)h.className="k";
       var a=document.createElement("span");a.textContent=(b>31&&b<127)?String.fromCharCode(b):".";a.dataset.i=idx;
       hb.appendChild(h);as.appendChild(a);
     }
