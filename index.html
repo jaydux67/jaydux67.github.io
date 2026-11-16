@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>packetracer · Developer &amp; bug hunter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Bricolage+Grotesque:wght@500;700&display=swap">
+<style>
+:root{
+  --bg:#f4f2fb;--surface:#ffffff;--ink:#1a1736;--muted:#5b5780;--line:#d9d5ee;--accent:#b45f06;--accent-ink:#ffffff;--hl:#ffe3b8;
+  color-scheme:light;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#13112a;--surface:#1c1940;--ink:#ece9ff;--muted:#a29ecb;--line:#34306a;--accent:#ffb347;--accent-ink:#1a1736;--hl:#4a3a1c;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#13112a;--surface:#1c1940;--ink:#ece9ff;--muted:#a29ecb;--line:#34306a;--accent:#ffb347;--accent-ink:#1a1736;--hl:#4a3a1c;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,sans-serif;line-height:1.6}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+header.top b{font-size:1.25rem;letter-spacing:.02em}
+nav a{margin-left:20px;text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+button.theme{margin-left:20px;background:none;border:1px solid var(--line);color:var(--ink);padding:4px 10px;border-radius:6px;cursor:pointer;font:inherit}
+.hero{padding:32px 0 48px}
+h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.05;margin:0 0 12px;font-weight:700}
+.lede{max-width:56ch;color:var(--muted);font-size:1.1rem;margin:0 0 24px}
+.dump{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;overflow-x:auto;font-size:.9rem}
+.row{display:flex;gap:18px;white-space:nowrap;line-height:1.9}
+.off{color:var(--muted)}
+.bytes span,.ascii span{display:inline-block;padding:0 3px;border-radius:3px;cursor:default}
+.bytes span{margin-right:4px}
+.bytes span.on,.ascii span.on{background:var(--hl);color:var(--ink)}
+.bytes span.k{color:var(--accent);font-weight:500}
+.ascii{color:var(--muted)}
+.cmd{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:20px}
+.cmd code{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:.92rem;overflow-x:auto;max-width:100%}
+.btn{background:var(--accent);color:var(--accent-ink);border:0;border-radius:8px;padding:10px 16px;font:inherit;font-weight:700;cursor:pointer;text-decoration:none;display:inline-block}
+.btn.alt{background:none;color:var(--ink);border:1px solid var(--line)}
+section{padding:40px 0;border-top:1px solid var(--line)}
+h2{font-size:1.6rem;margin:0 0 20px}
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.proj h3{margin:0;font-size:1.05rem}
+.proj p{margin:0;color:var(--muted);flex:1}
+.proj .lang{font-size:.8rem;color:var(--accent)}
+.proj.big{grid-column:1/-1;border-color:var(--accent)}
+.about{display:grid;gap:24px;grid-template-columns:1.2fr 1fr}
+@media(max-width:700px){.about{grid-template-columns:1fr}nav a{margin-left:12px}}
+.about p{margin:0 0 12px;max-width:60ch}
+dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 16px}
+dt{color:var(--muted)}dd{margin:0}
+footer{padding:28px 0 40px;color:var(--muted);border-top:1px solid var(--line)}
+@media(prefers-reduced-motion:no-preference){.dump{animation:rise .6s ease-out both}@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <</b>
+    <nav>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <button class="theme mono" id="theme" type="button" aria-label="Toggle light and dark theme">theme</button>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <h1>I find the bugs in other people’s code, and write small tools of my own.</h1>
+      <p class="lede">Developer and bug hunter from Sri Lanka. I work in Python, C and Linux, with a focus on web security, malware analysis and AI vulnerabilities.</p>
+      <div class="dump mono" id="dump" role="img" aria-label="Hex dump of the text packetracer developer and bug hunter"></div>
+      <div class="cmd">
+        <code class="mono" id="clone">git clone https://github.com/jaydux67</code>
+        <button class="btn" id="copy" type="button">Copy command</button>
+        <a class="btn alt" href="https://github.com/jaydux67">View GitHub</a>
+      </div>
+    </div>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="projects">
+        <article class="proj big">
+          <span class="lang mono">C</span>
+          <h3>MicroHttpd</h3>
+          <p>A tiny single-threaded HTTP/1.1 server for routers and other low-memory devices. The plain build is 24 KB, with optional HTTPS through mbedTLS. It allocates no heap after startup and rejects path traversal and NUL-byte injection.</p>
+          
+        </article>
+        <article class="proj">
+          <span class="lang mono">Python</span>
+          <h3>IPTOOL</h3>
+          <p>Looks up the location of an IP address and converts hostnames to IPs.</p>
+          
+        </article>
+        <article class="proj">
+          <span class="lang mono">Python</span>
+          <h3>Zip_Crack-2.0</h3>
+          <p>Tests the strength of a .zip password against your own password list.</p>
+          
+        </article>
+        <article class="proj">
+          <span class="lang mono">Python</span>
+          <h3>TEXT_TO_ASCII_ART</h3>
+          <p>Turns any text into ASCII art from the command line.</p>
+          
+        </article>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <div class="about">
+        <div>
+          <p>I report vulnerabilities, build command-line tools, and write about what I find. Right now I’m working on packetracer and studying for CEH, CISSP and CCNA.</p>
+          <p>Ask me about Python, Linux or cybersecurity.</p>
+        </div>
+        <dl class="mono">
+          <dt>Languages</dt><dd>Python, C, JavaScript</dd>
+          <dt>Platforms</dt><dd>Linux, Docker</dd>
+          <dt>Focus</dt><dd>Web security, malware analysis</dd>
+          <dt>Learning</dt><dd>CEH, CISSP, CCNA</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Projects and write-ups are posted on Telegram. Security work is on the lab site.</p>
+      <div class="cmd">
+        <a class="btn" href="https://t.me/H3X4R">Message on Telegram</a>
+        
+      </div>
+    </section>
+  </main>
+  <footer class="mono">packetracer · Sri Lanka</footer>
+</div>
+
+<script>
+(function(){
+  var text="packetracer :: developer & bug hunter, Sri Lanka. ";
+  var root=document.getElementById("dump");
+  var bytes=[];for(var i=0;i<text.length;i++)bytes.push(text.charCodeAt(i));
+  while(bytes.length%16)bytes.push(0);
+  for(var r=0;r<bytes.length;r+=16){
+    var row=document.createElement("div");row.className="row";
+    var off=document.createElement("span");off.className="off";off.textContent=("0000"+r.toString(16)).slice(-4);
+    var hb=document.createElement("span");hb.className="bytes";
+    var as=document.createElement("span");as.className="ascii";
+    for(var c=0;c<16;c++){
+      var idx=r+c,b=bytes[idx];
+      var h=document.createElement("span");h.textContent=("0"+b.toString(16)).slice(-2);h.dataset.i=idx;
+      if(idx<8)h.className="k";
+      var a=document.createElement("span");a.textContent=(b>31&&b<127)?String.fromCharCode(b):".";a.dataset.i=idx;
+      hb.appendChild(h);as.appendChild(a);
+    }
+    row.appendChild(off);row.appendChild(hb);row.appendChild(as);root.appendChild(row);
+  }
+  function mark(e,on){
+    var t=e.target;if(!t.dataset||t.dataset.i===undefined)return;
+    root.querySelectorAll('[data-i="'+t.dataset.i+'"]').forEach(function(n){n.classList.toggle("on",on)});
+  }
+  root.addEventListener("mouseover",function(e){mark(e,true)});
+  root.addEventListener("mouseout",function(e){mark(e,false)});
+
+  var copy=document.getElementById("copy");
+  copy.addEventListener("click",function(){
+    var cmd=document.getElementById("clone").textContent;
+    try{
+      navigator.clipboard.writeText(cmd).then(function(){copy.textContent="Copied"},function(){copy.textContent="Select and copy"});
+    }catch(e){copy.textContent="Select and copy"}
+    setTimeout(function(){copy.textContent="Copy command"},1800);
+  });
+
+  var rootEl=document.documentElement;
+  document.getElementById("theme").addEventListener("click",function(){
+    var dark=rootEl.getAttribute("data-theme")==="dark"||(!rootEl.getAttribute("data-theme")&&matchMedia("(prefers-color-scheme: dark)").matches);
+    rootEl.setAttribute("data-theme",dark?"light":"dark");
+  });
+})();
+</script>
+</body>
+</html>
